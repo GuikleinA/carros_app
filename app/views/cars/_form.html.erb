@@ -24,13 +24,19 @@
               <%= form.number_field :ano, class: "form-control", min: 1900, max: Date.today.year, required: true %>
             </div>
 
-            <div class="d-flex justify-content-between">
-              <%= link_to 'Voltar', cars_path, class: "btn btn-secondary" %>
-              <%= form.submit car.new_record? ? 'Criar Carro' : 'Atualizar Carro', class: "btn btn-success" %>
-            </div>
             <div class="form-check mb-3">
               <%= form.check_box :located, class: "form-check-input", id: "car_located" %>
               <%= form.label :located, "Carro já está locado?", class: "form-check-label", for: "car_located" %>
+            </div>
+            
+            <div class="mb-3">
+              <%= form.label :located_at, "Data de Locação", class: "form-label" %>
+              <%= form.datetime_select :located_at, class: "form-control" %>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <%= link_to 'Voltar', cars_path, class: "btn btn-secondary" %>
+              <%= form.submit car.new_record? ? 'Criar Carro' : 'Atualizar Carro', class: "btn btn-success" %>
             </div>
           <% end %>
         </div>

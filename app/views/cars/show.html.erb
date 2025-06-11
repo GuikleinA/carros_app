@@ -10,6 +10,10 @@
           <p><strong>Modelo:</strong> <%= @car.modelo %></p>
           <p><strong>Ano:</strong> <%= @car.ano %></p>
           <p><strong>Status:</strong> <%= @car.located? ? "Locado" : "Disponível" %></p>
+          <% if @car.located? && @car.located_at.present? %>
+            <p><strong>Data de Locação:</strong> <%= l(@car.located_at, format: :long) %></p>
+            <p><strong>Dias locado:</strong> <%= (Date.current - @car.located_at.to_date).to_i %> dias</p>
+          <% end %>
         </div>
         <div class="card-footer d-flex justify-content-between">
           <div>

@@ -5,6 +5,7 @@ class CreateCars < ActiveRecord::Migration[8.0]
       t.string :modelo
       t.integer :ano
       t.boolean :located
+      t.datetime :located_at
 
       t.timestamps
     end
