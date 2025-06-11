@@ -1,18 +1,40 @@
-<%= form_with(model: car, local: true) do |form| %>
-  <div class="mb-3">
-    <%= form.label :nome, class: "form-label" %>
-    <%= form.text_field :nome, class: "form-control", required: true %>
-  </div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0"><%= car.new_record? ? 'Novo Carro' : 'Editar Carro' %></h5>
+        </div>
+        <div class="card-body">
+          <%= form_with(model: car, local: true) do |form| %>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <%= form.label :nome, class: "form-label" %>
+                <%= form.text_field :nome, class: "form-control", required: true %>
+              </div>
 
-  <div class="mb-3">
-    <%= form.label :modelo, class: "form-label" %>
-    <%= form.text_field :modelo, class: "form-control", required: true %>
-  </div>
+              <div class="col-md-6 mb-3">
+                <%= form.label :modelo, class: "form-label" %>
+                <%= form.text_field :modelo, class: "form-control", required: true %>
+              </div>
+            </div>
 
-  <div class="mb-3">
-    <%= form.label :ano, class: "form-label" %>
-    <%= form.number_field :ano, class: "form-control", min: 1900, max: Date.today.year, required: true %>
-  </div>
+            <div class="mb-3">
+              <%= form.label :ano, class: "form-label" %>
+              <%= form.number_field :ano, class: "form-control", min: 1900, max: Date.today.year, required: true %>
+            </div>
 
-  <%= form.submit class: "btn btn-success" %>
-<% end %>
+            <div class="d-flex justify-content-between">
+              <%= link_to 'Voltar', cars_path, class: "btn btn-secondary" %>
+              <%= form.submit car.new_record? ? 'Criar Carro' : 'Atualizar Carro', class: "btn btn-success" %>
+            </div>
+            <div class="form-check mb-3">
+              <%= form.check_box :located, class: "form-check-input", id: "car_located" %>
+              <%= form.label :located, "Carro já está locado?", class: "form-check-label", for: "car_located" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

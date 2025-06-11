@@ -3,7 +3,17 @@ class CarsController < ApplicationController
 
   # GET /cars or /cars.json
   def index
-    @cars = Car.all
+    @filtro = params[:filtro]
+
+    @cars =
+      case @filtro
+      when "locados"
+        Car.locados
+      when "disponiveis"
+        Car.disponiveis
+      else
+        Car.all
+      end
   end
 
   # GET /cars/1 or /cars/1.json
@@ -65,6 +75,6 @@ class CarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.expect(car: [ :nome, :modelo, :ano ])
+      params.expect(car: [ :nome, :modelo, :ano, :located ])
     end
 end

@@ -15,6 +15,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_06_004358) do
     t.string "nome"
     t.string "modelo"
     t.integer "ano"
+    t.boolean "located"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
